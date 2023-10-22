@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 
+	"github.com/vertisky/vrpc/service"
 	"github.com/wagslane/go-rabbitmq"
 )
 
@@ -15,13 +16,17 @@ type RabbitMQConfig struct {
 }
 
 type vRPC struct {
+	baseName       string
 	rabbitMQConfig *RabbitMQConfig
 	connection     *rabbitmq.Conn
+	services       []service.Service
 }
 
-func New(config *RabbitMQConfig) (vRPC, error) {
+func New(baseName string, config *RabbitMQConfig) (vRPC, error) {
 	var err error
-	v := vRPC{}
+	v := vRPC{
+		baseName: baseName,
+	}
 	v.rabbitMQConfig = config
 
 	return v, err
@@ -33,5 +38,14 @@ func (v *vRPC) connect() error {
 	if err != nil {
 		return err
 	}
+	return nil
+}
+
+func (v *vRPC) Close() error {
+	return v.connection.Close()
+}
+
+func (v *vRPC) AddService(name string, service *service.Service) error {
+	v.services = append(v.services, *service)
 	return nil
 }
