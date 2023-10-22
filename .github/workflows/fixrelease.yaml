@@ -26,7 +26,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Increment patch version
         id: semver
-        uses: mathieudutour/github-tag-action@v5.1.1
+        uses: mathieudutour/github-tag-action@v6.1
         with:
           version: ${{ steps.latest_release.outputs.result }}
           release_type: patch
