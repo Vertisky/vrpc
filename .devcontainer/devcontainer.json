@@ -39,7 +39,7 @@
                 "ms-vscode.makefile-tools", // Makefile support
                 // VS Visuals
                 "PKief.material-icon-theme", // Material icons
-                "bierner.emojisense", // Emoji sense for markdown
+                //"bierner.emojisense", // Emoji sense for markdown
                 "vscode-icons-team.vscode-icons", // Better file extension icons
                 "IBM.output-colorizer", // Colorize your output/test logs
                 "zhuangtongfa.Material-theme", // Material theme
